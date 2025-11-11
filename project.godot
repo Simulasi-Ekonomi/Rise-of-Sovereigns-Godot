@@ -1,0 +1,10 @@
+; Engine configuration file for Rise of Sovereigns
+config_version=5
+
+[application]
+config/name="Rise of Sovereigns"
+run/main_scene="res://Scenes/MainMenu.tscn"
+config/icon="res://icon.png"
+
+[rendering]
+renderer/rendering_method="forward_plus"
