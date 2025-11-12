@@ -1,0 +1,8 @@
+{
+  "currency": "Gold",
+  "exchange_rate": 1.0,
+  "production_rate": {
+    "farm": 10,
+    "factory": 5
+  }
+}
