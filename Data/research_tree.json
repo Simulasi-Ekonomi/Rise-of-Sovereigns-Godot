@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Efficient Farming",
+    "level": 1,
+    "effect": "Increase farm yield by 10%"
+  },
+  {
+    "id": 2,
+    "name": "Stronger Tools",
+    "level": 1,
+    "effect": "Reduce building time by 5%"
+  }
+]
