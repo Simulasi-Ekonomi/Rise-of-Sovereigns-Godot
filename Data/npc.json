@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Farmer John",
+    "role": "Agriculture",
+    "efficiency": 1.2
+  },
+  {
+    "id": 2,
+    "name": "Builder Maria",
+    "role": "Construction",
+    "efficiency": 1.1
+  }
+]
