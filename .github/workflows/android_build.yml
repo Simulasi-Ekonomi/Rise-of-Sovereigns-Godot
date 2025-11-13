@@ -8,26 +8,36 @@ on:
 jobs:
   export-android:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Godot
         uses: godotengine/setup-godot@v2
         with:
-          version: '4.1.2'
-          use-dotnet: false
+          version: "4.1.2"
+          export_templates: true
 
-      - name: Godot Export Android
+      - name: Ensure Data exists
+        run: |
+          mkdir -p Data
+          test -f Data/buildings.json || echo '[]' > Data/buildings.json
+          test -f Data/npc.json || echo '[]' > Data/npc.json
+          test -f Data/economy.json || echo '{}' > Data/economy.json
+          test -f Data/research_tree.json || echo '[]' > Data/research_tree.json
+          test -f Data/bundle_config.json || echo '[]' > Data/bundle_config.json
+          test -f Data/ads_config.json || echo '{}' > Data/ads_config.json
+          ls -la Data
+
+      - name: Export Android
         uses: godotengine/godot-export@v2
         with:
           preset: "Android"
           path: "."
-          export_path: "build/RoS.apk"
+          export_path: "build/RiseOfSovereigns.apk"
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Rise-of-Sovereigns-APK
-          path: build/RoS.apk
+          path: build/RiseOfSovereigns.apk
