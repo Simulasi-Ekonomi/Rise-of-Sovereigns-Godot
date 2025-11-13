@@ -1,38 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://mainmenu"]
+[gd_scene load_steps=3 format=3]
 
 [node name="MainMenu" type="Control"]
-layout_mode = 3
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="."]
 text = "Rise of Sovereigns"
 anchors_preset = 15
-anchor_left = 0.25
-anchor_right = 0.75
-anchor_top = 0.15
-anchor_bottom = 0.25
-align = 1
-valign = 1
 theme_override_font_sizes/font_size = 36
+align = 1
 
 [node name="StartButton" type="Button" parent="."]
 text = "Start Game"
-anchors_preset = 15
 anchor_left = 0.4
 anchor_right = 0.6
-anchor_top = 0.55
-anchor_bottom = 0.65
-theme_override_font_sizes/font_size = 24
-
-[node name="QuitButton" type="Button" parent="."]
-text = "Quit"
-anchors_preset = 15
-anchor_left = 0.4
-anchor_right = 0.6
-anchor_top = 0.7
-anchor_bottom = 0.8
+anchor_top = 0.5
+anchor_bottom = 0.6
 theme_override_font_sizes/font_size = 24
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_pressed"]
