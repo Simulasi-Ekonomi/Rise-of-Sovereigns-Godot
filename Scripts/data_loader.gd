@@ -1,19 +1,37 @@
 extends Node
 
-func load_data():
-	var files = [
-		"res://Data/buildings.json",
-		"res://Data/economy.json",
-		"res://Data/npc.json",
-		"res://Data/research_tree.json",
-		"res://Data/bundle_config.json"
-	]
+var buildings = []
+var economy = {}
+var npcs = []
+var research = []
+var bundles = []
+var ads_config = {}
 
-	for f in files:
-		if FileAccess.file_exists(f):
-			var file = FileAccess.open(f, FileAccess.READ)
-			var json = JSON.parse_string(file.get_as_text())
-			if json.result == OK:
-				print("Loaded: ", f, " entries: ", json.data.size())
+func load_data():
+	var paths = {
+		"buildings": "res://Data/buildings.json",
+		"economy": "res://Data/economy.json",
+		"npcs": "res://Data/npc.json",
+		"research": "res://Data/research_tree.json",
+		"bundles": "res://Data/bundle_config.json",
+		"ads": "res://Data/ads_config.json"
+	}
+	for key in paths.keys():
+		var p = paths[key]
+		if FileAccess.file_exists(p):
+			var f = FileAccess.open(p, FileAccess.READ)
+			var txt = f.get_as_text()
+			var parsed = JSON.parse_string(txt)
+			if parsed.result == OK:
+				match key:
+					"buildings": buildings = parsed.data
+					"economy": economy = parsed.data
+					"npcs": npcs = parsed.data
+					"research": research = parsed.data
+					"bundles": bundles = parsed.data
+					"ads": ads_config = parsed.data
+				print("Loaded ", key, " entries: ", parsed.data.size() if typeof(parsed.data) == TYPE_ARRAY else "object")
 			else:
-				print("Error parsing: ", f)
+				print("JSON parse error in ", p)
+		else:
+			print("Missing data file: ", p)
