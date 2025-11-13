@@ -1,7 +1,10 @@
 extends Node2D
 
-@onready var data_loader = preload("res://Scripts/data_loader.gd").new()
+@onready var DataLoader = preload("res://Scripts/data_loader.gd").new()
 
 func _ready():
-	data_loader.load_data()
-	print("Game world initialized with buildings and NPCs.")
+	print("GameWorld ready")
+	DataLoader.load_data()
+	# generate map using MapGenerator
+	var gen = preload("res://Scripts/MapGenerator.gd").new()
+	gen.generate(self)
