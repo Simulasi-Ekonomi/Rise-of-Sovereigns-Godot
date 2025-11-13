@@ -1,0 +1,43 @@
+name: Android Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Godot export tool
+        uses: firebelley/setup-godot@v2
+        with:
+          godot-version: "4.5.1"
+          export-templates-version: "4.5.1"
+
+      - name: Verify Data files (create dummy if missing)
+        run: |
+          echo "Verifying Data folder..."
+          mkdir -p Data
+          test -f Data/buildings.json || echo '[]' > Data/buildings.json
+          test -f Data/npc.json || echo '[]' > Data/npc.json
+          test -f Data/economy.json || echo '{}' > Data/economy.json
+          test -f Data/research_tree.json || echo '[]' > Data/research_tree.json
+          test -f Data/bundle_config.json || echo '[]' > Data/bundle_config.json
+          test -f Data/ads_config.json || echo '{}' > Data/ads_config.json
+          ls -la Data
+
+      - name: Build Android APK
+        run: |
+          mkdir -p build/android
+          # export using preset name "Android" (expects export_presets.cfg present)
+          godot --headless --export-release "Android" build/android/RiseOfSovereigns.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: RiseOfSovereigns-APK
+          path: build/android/RiseOfSovereigns.apk
