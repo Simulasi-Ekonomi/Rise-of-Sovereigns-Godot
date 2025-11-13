@@ -1,2 +1,6 @@
-# Rise-of-Sovereigns-Godot
-Official Godot 4 version of Rise of Sovereigns — a realistic economic simulation and city-building game integrating NPC systems, research trees, and dynamic resource markets.
+# Rise of Sovereigns - Godot (starter)
+
+This repo contains Godot 4 starter project for Rise of Sovereigns.
+Contains scenes, scripts and basic data loader to generate an initial preview map.
+
+Build: GitHub Actions auto export to Android.
