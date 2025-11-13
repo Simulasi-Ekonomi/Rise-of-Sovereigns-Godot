@@ -1,10 +1,17 @@
-; Engine configuration file for Rise of Sovereigns
-config_version=5
+[header]
+config_version=4
 
 [application]
 config/name="Rise of Sovereigns"
+config/description="Economic farming simulator with research, NPCs, and dynamic leaderboards."
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
-[rendering]
-renderer/rendering_method="forward_plus"
+[preset.0]
+name="Android"
+platform="Android"
+runnable=true
+[preset.0.options]
+keystore/debug="res://android/debug.keystore"
+keystore/debug_user="androiddebugkey"
+keystore/debug_password="android"
