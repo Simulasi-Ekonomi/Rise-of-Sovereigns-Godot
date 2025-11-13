@@ -1,17 +1,11 @@
-[header]
-config_version=4
+[gd_project]
+config_version=5
 
 [application]
 config/name="Rise of Sovereigns"
 config/description="Economic farming simulator with research, NPCs, and dynamic leaderboards."
 run/main_scene="res://Scenes/MainMenu.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/icon.png"
 
-[preset.0]
-name="Android"
-platform="Android"
-runnable=true
-[preset.0.options]
-keystore/debug="res://android/debug.keystore"
-keystore/debug_user="androiddebugkey"
-keystore/debug_password="android"
+[rendering]
+vulkan/driver/force_fallback=false
