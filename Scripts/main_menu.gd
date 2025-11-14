@@ -1,7 +1,7 @@
-extends Control
+extends Button
 
 func _ready():
-	print("MainMenu ready")
+	pass
 
-func _on_start_pressed():
-	get_tree().change_scene_to_file("res://Scenes/GameWorld.tscn")
+func _pressed():
+    get_tree().change_scene_to_file("res://Scenes/GameWorld.tscn")
