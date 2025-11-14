@@ -1,43 +1,29 @@
-name: Godot Android Export
+name: Build Godot Android
 
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch:
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  export-android:
+  export:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Setup Godot
-        uses: godotengine/setup-godot@v2
-        with:
-          version: "4.1.2"
-          export_templates: true
+    - name: Export Android APK
+      uses: firebelley/godot-export@v5.2.0
+      with:
+        godot_version: "4.2.2"
+        export_template: true
+        output_path: build/
+        presets_to_export: "Android"
 
-      - name: Ensure Data exists
-        run: |
-          mkdir -p Data
-          test -f Data/buildings.json || echo '[]' > Data/buildings.json
-          test -f Data/npc.json || echo '[]' > Data/npc.json
-          test -f Data/economy.json || echo '{}' > Data/economy.json
-          test -f Data/research_tree.json || echo '[]' > Data/research_tree.json
-          test -f Data/bundle_config.json || echo '[]' > Data/bundle_config.json
-          test -f Data/ads_config.json || echo '{}' > Data/ads_config.json
-          ls -la Data
-
-      - name: Export Android
-        uses: godotengine/godot-export@v2
-        with:
-          preset: "Android"
-          path: "."
-          export_path: "build/RiseOfSovereigns.apk"
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Rise-of-Sovereigns-APK
-          path: build/RiseOfSovereigns.apk
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: Android-APK
+        path: build/*
