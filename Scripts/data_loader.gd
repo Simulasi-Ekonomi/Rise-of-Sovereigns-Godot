@@ -30,7 +30,7 @@ func load_data():
 					"research": research = parsed.data
 					"bundles": bundles = parsed.data
 					"ads": ads_config = parsed.data
-				print("Loaded ", key, " entries: ", parsed.data.size() if typeof(parsed.data) == TYPE_ARRAY else "object")
+				print("Loaded ", key)
 			else:
 				print("JSON parse error in ", p)
 		else:
