@@ -3,12 +3,12 @@
     "id": 1,
     "name": "Starter Bundle",
     "price_usd": 0.99,
-    "items": ["1000 Gold", "50 Diamond", "Instant Build (1x)"]
+    "items": ["100000 Gold", "500 Diamond", "Instant Build (1x)"]
   },
   {
     "id": 2,
     "name": "Farmer Bundle",
     "price_usd": 4.99,
-    "items": ["5000 Gold", "100 Diamond", "Instant Harvest (3x)"]
+    "items": ["500000 Gold", "1000 Diamond", "Instant Harvest (3x)"]
   }
 ]
