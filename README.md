@@ -1,6 +1,7 @@
-# Rise of Sovereigns - Godot (starter)
+# Rise of Sovereigns - Godot Full Starter
 
-This repo contains Godot 4 starter project for Rise of Sovereigns.
-Contains scenes, scripts and basic data loader to generate an initial preview map.
-
-Build: GitHub Actions auto export to Android.
+This repo contains a full Godot 4 starter scaffold:
+- Scenes: MainMenu, GameWorld, HUD
+- Scripts: data loader, map generator, game manager
+- Data: JSON placeholders
+- GitHub Actions workflow for Android export (Godot)
