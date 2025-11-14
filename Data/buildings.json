@@ -1,15 +1,4 @@
 [
-  {
-    "id": 1,
-    "name": "Farm House",
-    "level": 1,
-    "production": 10,
-    "upgrade_cost": 50
-  },
-  {
-    "id": 2,
-    "name": "Barn",
-    "level": 1,
-    "capacity": 100
-  }
+  {"id":1,"name":"Farm House","level":1,"production":10,"upgrade_cost":50},
+  {"id":2,"name":"Barn","level":1,"capacity":100}
 ]
