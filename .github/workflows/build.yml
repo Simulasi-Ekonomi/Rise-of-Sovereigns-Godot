@@ -1,6 +1,10 @@
-name: Godot Android Build
+name: Build Android
+permissions:
+  contents: read
 
 on:
+  push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
