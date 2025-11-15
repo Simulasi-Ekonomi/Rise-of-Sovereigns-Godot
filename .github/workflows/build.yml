@@ -1,0 +1,36 @@
+name: Godot Android Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  export-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Godot
+        uses: Barichello/godot-ci@v5.2
+        with:
+          version: "4.5.1"
+          export_templates: true
+
+      - name: Restore debug keystore
+        run: |
+          mkdir -p android/app
+          echo "${{ secrets.DEBUG_KEYSTORE }}" | base64 --decode > android/app/debug.keystore
+
+      - name: Export APK
+        run: |
+          mkdir -p build
+          godot --headless --export-release "Android" build/RiseOfSovereigns.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: RiseOfSovereigns
+          path: build/*.apk
