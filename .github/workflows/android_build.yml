@@ -1,0 +1,52 @@
+name: CI Build & Test
+
+on: [push, pull_request]
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install -r requirements.txt || true
+      - name: Run tests
+        run: pytest -q
+
+  build_android:
+    needs: unit_tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download templates from Drive
+        env:
+          FILEID: ${{ secrets.GODOT_TEMPLATES_FILEID }}
+        run: |
+          # same download snippet as earlier
+          curl -c /tmp/cookies "https://drive.google.com/uc?export=download&id=${FILEID}" -s -L > /tmp/inter.html
+          CONFIRM=$(sed -n 's/.*confirm=\([0-9A-Za-z_-]*\).*/\1/p' /tmp/inter.html | head -n 1)
+          if [ -n "$CONFIRM" ]; then
+            curl -Lb /tmp/cookies "https://drive.google.com/uc?export=download&confirm=${CONFIRM}&id=${FILEID}" -o godot_templates.tpz
+          else
+            curl -L "https://drive.google.com/uc?export=download&id=${FILEID}" -o godot_templates.tpz
+          fi
+          mkdir -p /home/runner/.local/share/godot
+          mv godot_templates.tpz /home/runner/.local/share/godot/godot_templates.tpz
+
+      - name: Setup Godot & Export
+        uses: barichello/godot-ci@4.2.1
+        with:
+          godot-version: "4.5.1"
+          export-templates: true
+
+      - name: Export Android
+        run: godot --headless --export-release "Android" build/RiseOfSovereigns.apk
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: RiseOfSovereigns
+          path: build/RiseOfSovereigns.apk
