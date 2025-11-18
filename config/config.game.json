@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "project": "Simulasi Ekonomi Real-Life Dzikri Fauzan",
+    "version": "1.0.0",
+    "generated_by": "AI-Builder-v1",
+    "generated_at": "2025-11-17T00:00:00Z"
+  },
+  "global": {
+    "currency_scale": 1000,
+    "game_time": {
+      "year_minutes": 90,
+      "day_seconds": 3,
+      "month_real_minutes": 7.5
+    },
+    "npc_population": 5000000,
+    "player_immunity": true
+  },
+  "corruption": {
+    "softcap": 400000000,
+    "hardcap": 500000000,
+    "sweep_event": {
+      "enabled": true,
+      "trigger_on_hardcap": true,
+      "sweep_reduction_percent": 0.05,
+      "reward_to_compliance_fund": 0.4
+    },
+    "leak_rate_base": 0.05,
+    "detection_sensitivity": 0.9,
+    "audit_cycle_seconds": 3600
+  },
+  "market": {
+    "stabilizer": {
+      "enabled": true,
+      "floor_multiplier": 1.02,
+      "budget_percent_of_reserve": 0.02,
+      "trigger_threshold_supply_ratio": 1.15,
+      "max_daily_buy_percent": 0.01
+    },
+    "commodities_sample": {
+      "broiler": {"hpp": 10000, "volatility": 0.12},
+      "padi": {"hpp": 8000, "volatility": 0.08},
+      "jagung": {"hpp": 7000, "volatility": 0.09},
+      "cabai": {"hpp": 25000, "volatility": 0.25}
+    },
+    "price_update_interval_seconds": 60
+  },
+  "ads_config": {
+    "reward_multiplier": 1.2,
+    "max_ads_per_hour": 5,
+    "cooldown_seconds": 300,
+    "ad_types": ["rewarded","interstitial","banner"],
+    "moments": [
+      "harvest",
+      "level_up",
+      "crisis",
+      "construction_done"
+    ],
+    "adaptive_multiplier_by_watch_history": true
+  },
+  "economy": {
+    "currency": "gold",
+    "initial_player_gold": 5000,
+    "tax_rate_percent": 0.05,
+    "maintenance_daily": 50
+  },
+  "npc": {
+    "visible_limit": 3,
+    "background_threads": 5000000,
+    "update_interval_seconds": 600
+  },
+  "telemetry": {
+    "enable_analytics": true,
+    "events": ["ad_view", "contract_complete", "corruption_sweep", "price_change"]
+  }
+}
