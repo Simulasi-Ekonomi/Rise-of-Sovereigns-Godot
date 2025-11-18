@@ -1,0 +1,58 @@
+{
+  "ad_config": {
+    "rewarded": {
+      "base_reward_coins": 10,
+      "hourly_limit_free": 5,
+      "cooldown_seconds": 300,
+      "streak_bonus": {
+        "3": 1.1,
+        "7": 1.25,
+        "14": 1.5
+      },
+      "session_multiplier": {
+        "day1": 1.0,
+        "day7": 1.1,
+        "day30": 1.25
+      }
+    },
+    "interstitial": {
+      "show_moments": ["construction_done","level_up","card_pack_open"],
+      "frequency_per_hour": 2
+    },
+    "bundles": [
+      {
+        "id": "bundle_0.99",
+        "price": 0.99,
+        "gems": 1200,
+        "stamina": 1200,
+        "rarity_dropGuarantee": "rare_a"
+      },
+      {
+        "id": "bundle_4.99",
+        "price": 4.99,
+        "gems": 3600,
+        "free_stamina_daily": 100,
+        "duration_days": 7,
+        "special_drop": "epic_a"
+      },
+      {
+        "id": "bundle_9.99_sub",
+        "price": 9.99,
+        "subscription": true,
+        "access": "mini_super",
+        "daily_free_stamina": 100,
+        "ad_watch_bonus_per_day": 20
+      }
+    ],
+    "monetization_targets": {
+      "target_annual_revenue_usd": 1000000,
+      "assumptions": {
+        "dau": 50000,
+        "arpu_paid_users": 4.5,
+        "paid_conversion_rate": 0.02,
+        "ads_eRPM_usd": 5.50,
+        "ads_impressions_per_user_per_day": 6
+      }
+    }
+  }
+}
